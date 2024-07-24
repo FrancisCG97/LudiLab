@@ -1,0 +1,45 @@
+import { Component, output } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
+const MATERIAL_MODULES = [
+  MatToolbarModule, MatIconModule, MatButtonModule
+];
+
+@Component({
+  selector: 'app-toolbar',
+  standalone: true,
+  imports: [MATERIAL_MODULES],
+  template: `
+    <mat-toolbar color='primary'>
+
+      <a mat-button routerLink="/" >
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+
+      <a mat-button routerLink="/games" >
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+
+      <span class="spacer"></span>
+
+      <a mat-button (click)="emitClick()" >
+        <mat-icon>add-box</mat-icon>
+        <span>New Idea!</span>
+      </a>
+
+    </mat-toolbar>
+  `,
+  styles: ``
+})
+export class ToolbarComponent {
+
+  onNewGameEvent = output<void>();
+  emitClick(): void {
+    this.onNewGameEvent.emit();
+  }
+
+}
